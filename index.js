@@ -16,8 +16,7 @@ class LinkedList {
   constructor(value) {
     this.head = {
       value: value,
-      next: null,
-      prev: null
+      next: null
     };
     this.tail = this.head;
     this.length = 1;
@@ -26,25 +25,20 @@ class LinkedList {
   _newNode(value){
     return {
       value: value,
-      next: null,
-      prev: null
+      next: null
     }
   }
   
   append(value){
-    const newNode = this._newNode(value);
     const prevTail = this.tail;
-    this.tail = newNode;
+    this.tail = this._newNode(value);
     prevTail.next = this.tail;
-    this.tail.prev = prevTail;
     this.length++;
   }
 
   prepend(value){
-    const newNode = this._newNode(value);
     const prevHead = this.head
-    this.head = newNode;
-    prevHead.prev = this.head;
+    this.head = this._newNode(value);
     this.head.next = prevHead;
     this.length++;
   }
@@ -57,11 +51,9 @@ class LinkedList {
     }
     const newNode = this._newNode(value);
     const leader = this.traverse(index - 1);
-    const fatPointer = leader.next;
+    const fatPointer = leader.next; //55
     leader.next = newNode;
     newNode.next = fatPointer;
-    newNode.prev = leader;
-    fatPointer.prev = newNode;
     this.length++;  
     return this.printList();
   }
@@ -72,9 +64,7 @@ class LinkedList {
     let nodeToBeDeleted = leader.next;
     let postDeleteNode = nodeToBeDeleted.next;
     leader.next = postDeleteNode;
-    postDeleteNode.prev = leader;
     this.length--;
-    return this.printList();
   }
 
   traverse(index){
@@ -91,17 +81,32 @@ class LinkedList {
     const array = [];
     let currentNode = this.head;
     while(currentNode !== null) {
-      array.push(currentNode);
+      array.push(currentNode.value);
       currentNode = currentNode.next;
     }
     console.log(array)
   }
+
+  reverse(){
+    if(!this.head.next){
+      return this.head;
+    }
+    let cur = this.head;
+    let prev = null;
+    while(cur){
+      let nextUp = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = nextUp;
+    }
+    this.head = prev;
+  }
+  
 }
 
 let myLinkedList = new LinkedList(10);
-myLinkedList.prepend(8);
-myLinkedList.append(20);
-myLinkedList.insert(1, 17);
-myLinkedList.insert(2,21);
-
-
+myLinkedList.prepend(2);
+myLinkedList.prepend(69);
+myLinkedList.insert(2, 99);
+myLinkedList.reverse();
+myLinkedList.printList();

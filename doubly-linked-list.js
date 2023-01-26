@@ -12,7 +12,7 @@
 //   }
 // };
 
-class LinkedList {
+class DoublyLinkedList {
   constructor(value) {
     this.head = {
       value: value,
@@ -98,7 +98,7 @@ class LinkedList {
   }
 }
 
-let myLinkedList = new LinkedList(10);
+let myLinkedList = new DoublyLinkedList(10);
 myLinkedList.prepend(8);
 myLinkedList.append(20);
 myLinkedList.insert(1, 17);
