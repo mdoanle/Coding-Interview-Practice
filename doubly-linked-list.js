@@ -32,19 +32,16 @@ class LinkedList {
   }
   
   append(value){
-    const newNode = this._newNode(value);
     const prevTail = this.tail;
-    this.tail = newNode;
+    this.tail = this._newNode(value);
     prevTail.next = this.tail;
     this.tail.prev = prevTail;
     this.length++;
   }
 
   prepend(value){
-    const newNode = this._newNode(value);
     const prevHead = this.head
-    this.head = newNode;
-    prevHead.prev = this.head;
+    this.head = this._newNode(value);
     this.head.next = prevHead;
     this.length++;
   }
@@ -60,7 +57,6 @@ class LinkedList {
     const fatPointer = leader.next; //55
     leader.next = newNode;
     newNode.next = fatPointer;
-    newNode.prev = leader;
     this.length++;  
     return this.printList();
   }
@@ -71,9 +67,7 @@ class LinkedList {
     let nodeToBeDeleted = leader.next;
     let postDeleteNode = nodeToBeDeleted.next;
     leader.next = postDeleteNode;
-    postDeleteNode.prev = leader;
     this.length--;
-    return this.printList();
   }
 
   traverse(index){
@@ -98,10 +92,6 @@ class LinkedList {
 }
 
 let myLinkedList = new LinkedList(10);
-myLinkedList.append(12);
-myLinkedList.append(14);
-myLinkedList.prepend(8);
-myLinkedList.insert(1, 17);
-myLinkedList.insert(2,21);
-myLinkedList.remove(1);
-//myLinkedList.printList();
+myLinkedList.prepend(2);
+myLinkedList.prepend(69);
+myLinkedList.insert(2, 99);
