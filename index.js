@@ -57,10 +57,11 @@ class LinkedList {
     }
     const newNode = this._newNode(value);
     const leader = this.traverse(index - 1);
-    const fatPointer = leader.next; //55
+    const fatPointer = leader.next;
     leader.next = newNode;
     newNode.next = fatPointer;
     newNode.prev = leader;
+    fatPointer.prev = newNode;
     this.length++;  
     return this.printList();
   }
@@ -98,10 +99,9 @@ class LinkedList {
 }
 
 let myLinkedList = new LinkedList(10);
-myLinkedList.append(12);
-myLinkedList.append(14);
 myLinkedList.prepend(8);
+myLinkedList.append(20);
 myLinkedList.insert(1, 17);
 myLinkedList.insert(2,21);
-myLinkedList.remove(1);
-//myLinkedList.printList();
+
+
