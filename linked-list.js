@@ -59,6 +59,14 @@ class LinkedList {
   }
   //insert(2,99)
 
+  remove(index){
+    const leader = this.traverse(index - 1);
+    let nodeToBeDeleted = leader.next;
+    let postDeleteNode = nodeToBeDeleted.next;
+    leader.next = postDeleteNode;
+    this.length--;
+  }
+
   traverse(index){
     let i = 0;
     let currentNode = this.head;
@@ -84,5 +92,3 @@ let myLinkedList = new LinkedList(10);
 myLinkedList.prepend(2);
 myLinkedList.prepend(69);
 myLinkedList.insert(2, 99);
-myLinkedList.insert(10,102);
-myLinkedList.printList();
