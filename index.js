@@ -6,7 +6,7 @@ class Stack {
     if(this.array.length === 0){
       return null;
     }
-    return this.array[0];
+    return this.array[this.array.length - 1];
   }
   push(value){
     this.array.push(value);
@@ -16,15 +16,16 @@ class Stack {
     this.array.pop();
     return this;
   }
-  //isEmpty
 }
 
 const myStack = new Stack();
 myStack.push('discord');
 myStack.push('twitter');
+console.log(myStack.peek());
 console.log(myStack);
-myStack.pop();
-console.log(myStack);
+
+//myStack.pop();
+//console.log(myStack);
 
 
 
