@@ -2,8 +2,8 @@
 
 function findFactorialRecursive(number) {
   //code here
-  if(number < 2) {
-    return 1;
+  if(number == 0) {
+    return 0;
   }
   return number * findFactorialRecursive(number - 1);
 }
