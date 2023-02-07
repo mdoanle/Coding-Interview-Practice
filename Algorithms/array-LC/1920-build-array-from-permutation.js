@@ -7,5 +7,3 @@ var buildArray = function(nums) {
     }
     return ans;
 };
-
-console.log(buildArray(nums));
